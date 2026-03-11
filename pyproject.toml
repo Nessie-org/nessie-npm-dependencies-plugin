@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nessie-npm-dependencies-plugin"
+version = "0.1.0"
+description = "Nessie NPM Dependencies Plugin — plugin for Nessie Graph Explorer that adds support for creating graphs from NPM dependencies"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Mihajlo Milojević", email = "milojevicm374@gmail.com" },
+]
+keywords = ["nessie", "graph", "datasource", "npm", "dependencies", "plugin"]
+dependencies = [
+    "nessie-api>=0.1.0",
+    "aiohttp==3.13.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/Nessie-org/nessie-npm-dependencies-plugin"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nessie_npm_dependencies_plugin"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+ignore_missing_imports = true
