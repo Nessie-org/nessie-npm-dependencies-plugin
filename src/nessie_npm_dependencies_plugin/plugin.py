@@ -2,9 +2,10 @@ from nessie_api.models import Action, plugin
 import asyncio
 from .fetch import build_dependency_graph
 from typing import Any
+from nessie_api.models import Graph
 
-def load_graph(action: Action, setup: dict[str, Any]):
-    return asyncio.run(build_dependency_graph(setup["Package Name"]))
+def load_graph(action: Action) -> Graph:
+    return asyncio.run(build_dependency_graph(action.payload["Package Name"]))
 
 
 @plugin("NPM Package Dependencies")
